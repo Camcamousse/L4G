@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le test de l'été – Unlock!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #53A1D8;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .question {
+            margin-bottom: 20px;
+            display: none;
+        }
+        .question:first-of-type {
+            display: block;
+        }
+        button {
+            background-color: white;
+            color: #53A1D8;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        h1, h2 {
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <h1>Le test de l'été – Unlock!</h1>
+    <p>Découvrez quel Unlock! Short Adventures vous devez emmener en vacances !</p>
+    
+    <div id="quiz">
+        <div class="question" id="q1">
+            <p>1. Quand vous pensez aux vacances, qu'est-ce qui vous vient à l'esprit ?</p>
+            <button onclick="answer(1, 2)">Repos et orteils en éventail sur la plage</button>
+            <button onclick="answer(1, 3)">Aventure et exploration</button>
+            <button onclick="answer(1, 1)">Culture et visites de musées</button>
+        </div>
+
+        <div class="question" id="q2">
+            <p>2. Quel est votre moyen de transport de prédilection pour partir ?</p>
+            <button onclick="answer(2, 2)">L'avion, pour aller loin et vite</button>
+            <button onclick="answer(2, 3)">La voiture, pour mettre plus de jeux dans le coffre</button>
+            <button onclick="answer(2, 1)">Le train au cas où il y aurait un meurtre à résoudre</button>
+        </div>
+
+        <div class="question" id="q3">
+            <p>3. Que mettez-vous en priorité dans votre valise ?</p>
+            <button onclick="answer(3, 2)">Slip de bain avec ficelle qui dépasse et crème solaire</button>
+            <button onclick="answer(3, 3)">Chaussures de randonnée et boussole</button>
+            <button onclick="answer(3, 1)">Guide touristique et Nokia 3000</button>
+        </div>
+
+        <div class="question" id="q4">
+            <p>4. Quel type d'hébergement préférez-vous ?</p>
+            <button onclick="answer(4, 2)">Camping, à vous la danse des tongs</button>
+            <button onclick="answer(4, 3)">B&B, à vous le partage des miettes de croissant</button>
+            <button onclick="answer(4, 1)">Hôtel de luxe, à vous le peignoir et les pantoufles du spa</button>
+        </div>
+
+        <div class="question" id="q5">
+            <p>5. Comment aimez-vous passer vos soirées en vacances ?</p>
+            <button onclick="answer(5, 1)">À regarder le coucher de soleil avec un cocktail Skull</button>
+            <button onclick="answer(5, 3)">Autour d'un feu de camp à jouer les voyantes</button>
+            <button onclick="answer(5, 2)">À explorer les cafés jeux et théâtres locaux</button>
+        </div>
+
+        <div class="question" id="q6">
+            <p>6. Quelle est votre activité préférée pendant les vacances ?</p>
+            <button onclick="answer(6, 2)">Jouer à des jeux de société assis au bar de la piscine</button>
+            <button onclick="answer(6, 3)">Jouer à des jeux de société au sommet d'une montagne</button>
+            <button onclick="answer(6, 1)">Jouer à des jeux de société dans les gradins du Colisée</button>
+        </div>
+    </div>
+
+    <div id="result" style="display:none;"></div>
+
+    <script>
+        let score = 0;
+        let currentQuestion = 1;
+
+        function answer(question, value) {
+            score += value;
+            document.getElementById('q' + question).style.display = 'none';
+            currentQuestion++;
+            if (currentQuestion <= 6) {
+                document.getElementById('q' + currentQuestion).style.display = 'block';
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            let result = "";
+            if (score <= 8) {
+                result = "Le Voyageur Culturel : Vous aimez découvrir de nouveaux lieux à travers leur histoire et leur culture. Votre Unlock! idéal : Le Réveil de la momie";
+            } else if (score <= 11) {
+                result = "Le Vacancier Relax : Pour vous, les vacances riment avec détente. Votre Unlock! idéal : Panique en cuisine";
+            } else if (score <= 14) {
+                result = "L'Aventurier Nature : Vous adorez être en plein air et relever des défis physiques. Votre Unlock! idéal : Red mask";
+            } else if (score <= 17) {
+                result = "Le Globetrotter Équilibré : Vous aimez un mélange de tout. Votre Unlock! idéal : Le vol de l'ange";
+            } else {
+                result = "Le Passionné d'Aventures Extrêmes : Vous êtes constamment à la recherche d'adrénaline. Votre Unlock! idéal : Le donjon de Doo-Aran";
+            }
+
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').innerHTML = `
+                <h2>Votre résultat :</h2>
+                <p>${result}</p>
+                <p>Découvrez tous les Unlock! Short Adventures sur :</p>
+                <p><a href="https://www.spacecowboys.fr/unlock-short-adventures-fr" style="color: #FFD700;">spacecowboys.fr/unlock-short-adventures-fr</a></p>
+            `;
+        }
+    </script>
+</body>
+</html>
